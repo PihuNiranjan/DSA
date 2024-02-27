@@ -25,6 +25,22 @@ struct node *insertionbegin(struct node *head, int data)
     return beginode;
 }
 
+struct node *insertatindex(struct node *head, int data, int index)
+{
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    struct node *p = head;
+    int i = 0;
+    while(i!=index-1){
+        p = p->link;
+        i++;
+    }
+
+    ptr->link = p->link;
+    ptr->data = data;
+    p->link = ptr;
+    return head;
+}
+
 int main()
 {
     struct node *head;
@@ -71,7 +87,8 @@ int main()
     nodeaftersecond->data = 10;
     second->link = nodeaftersecond;
 
-    //
+    //insertion at particular index 
+   insertatindex(begin, 40, 6);
 
     //  traversal in linked list
     display(begin);
